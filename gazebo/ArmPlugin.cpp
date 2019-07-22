@@ -56,7 +56,7 @@
 #define REWARD_WIN  500.0f
 #define REWARD_LOSS -500.0f
 #define REWARD_MULT 10.0f
-#define alpha 0.3f
+#define alpha 0.9f
 
 // Define Object Names
 #define WORLD_NAME "arm_world"
@@ -618,10 +618,9 @@ void ArmPlugin::OnUpdate(const common::UpdateInfo& updateInfo)
 			if( episodeFrames > 1 )
 			{
 				const float distDelta  = lastGoalDistance - distGoal;
-				const float movingAvg  = 0.9f;
                	const float timePenalty  =  0.50f;
 				// compute the smoothed moving average of the delta of the distance to the goal
-				avgGoalDelta  			= (avgGoalDelta * movingAvg) + (distDelta * (1.0 - alpha));
+				avgGoalDelta  			= (avgGoalDelta * alpha) + (distDelta * (1.0 - alpha));
 				rewardHistory 			= (avgGoalDelta) * REWARD_MULT - timePenalty;
 				newReward     = true;	
 			}
