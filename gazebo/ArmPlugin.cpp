@@ -620,9 +620,9 @@ void ArmPlugin::OnUpdate(const common::UpdateInfo& updateInfo)
 				const float distDelta  = lastGoalDistance - distGoal;
                	const float timePenalty  =  0.50f;
 				// compute the smoothed moving average of the delta of the distance to the goal
-				avgGoalDelta  			= (avgGoalDelta * alpha) + (distDelta * (1.0 - alpha));
-				rewardHistory 			= (avgGoalDelta) * REWARD_MULT - timePenalty;
-				newReward     = true;	
+				avgGoalDelta = (avgGoalDelta * alpha) + (distDelta * (1.0 - alpha));
+				rewardHistory = (avgGoalDelta) * REWARD_MULT - timePenalty;
+				newReward = true;	
 			}
 
 			lastGoalDistance = distGoal;
